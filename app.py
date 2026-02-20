@@ -3,7 +3,6 @@ Disk Scheduling Algorithm Simulator - Flask Backend
 Implements FCFS, SSTF, SCAN, C-SCAN, LOOK, C-LOOK algorithms.
 """
 
-import os
 from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
@@ -245,5 +244,4 @@ def simulate():
 # ──────────────────────────────────────────────
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=False, host="0.0.0.0", port=port)
+    app.run(debug=True, port=5000)
