@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disk Scheduling Simulator</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ───── Header ───── -->
+<header>
+  <h1>&#128190; Disk Scheduling Algorithm Simulator</h1>
+  <p class="subtitle">Visualise FCFS &middot; SSTF &middot; SCAN &middot; C-SCAN &middot; LOOK &middot; C-LOOK</p>
+</header>
+
+<main>
+
+  <!-- ───── Input Card ───── -->
+  <section class="card input-card" id="inputCard">
+    <h2>Configuration</h2>
+
+    <div class="field">
+      <label for="requests">Disk Requests <span class="hint">(comma-separated)</span></label>
+      <input type="text" id="requests" placeholder="e.g. 98, 183, 37, 122, 14, 124, 65, 67" value="98, 183, 37, 122, 14, 124, 65, 67"/>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="head">Initial Head Position</label>
+        <input type="number" id="head" placeholder="e.g. 53" value="53" min="0"/>
+      </div>
+      <div class="field">
+        <label for="diskSize">Disk Size</label>
+        <input type="number" id="diskSize" placeholder="e.g. 200" value="200" min="1"/>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="algorithm">Algorithm</label>
+      <select id="algorithm">
+        <option value="FCFS">FCFS</option>
+        <option value="SSTF">SSTF</option>
+        <option value="SCAN">SCAN</option>
+        <option value="C-SCAN">C-SCAN</option>
+        <option value="LOOK">LOOK</option>
+        <option value="C-LOOK">C-LOOK</option>
+      </select>
+    </div>
+
+    <div class="btn-group">
+      <button id="btnSimulate" class="btn btn-primary">&#9654; Simulate</button>
+      <button id="btnCompare" class="btn btn-secondary">&#128202; Compare All</button>
+    </div>
+
+    <p class="error-msg" id="errorMsg"></p>
+  </section>
+
+  <!-- ───── Single Result Card ───── -->
+  <section class="card result-card hidden" id="resultCard">
+    <h2 id="resultTitle">Result</h2>
+    <div class="stats">
+      <div class="stat-box">
+        <span class="stat-label">Total Seek Time</span>
+        <span class="stat-value" id="totalSeek">—</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Average Seek Time</span>
+        <span class="stat-value" id="avgSeek">—</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>Seek Sequence</label>
+      <div class="sequence" id="seekSequence"></div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="seekChart"></canvas>
+    </div>
+  </section>
+
+  <!-- ───── Compare Table Card ───── -->
+  <section class="card compare-card hidden" id="compareCard">
+    <h2>Algorithm Comparison</h2>
+    <div class="table-wrap">
+      <table id="compareTable">
+        <thead>
+          <tr>
+            <th>Algorithm</th>
+            <th>Total Seek Time</th>
+            <th>Average Seek Time</th>
+            <th>Seek Sequence</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="compareChart"></canvas>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Disk Scheduling Simulator &mdash; OS Minor Project</p>
+</footer>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
