@@ -151,6 +151,3 @@ Input: `requests = [98, 183, 37, 122, 14, 124, 65, 67]`, `head = 53`, `disk_size
 
 ---
 
-## 📄 License
-
-MIT License — free to use, modify, and distribute.
